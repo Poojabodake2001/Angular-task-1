@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of getProductList let i = index">
+            <div class="card mb-4 text-center" >
+                <div class="card-body">
+                    <img [src]="list.productImage" class="img-fluid img" [alt]="list.productImage" [title]="list.productImage">
+                    <h4 class=" mt-4 h5">Name : {{list.productName}}</h4>
+                    <h5 class="my-2"> Price : {{list.productPrice*qtyArr[i]}}</h5>
+                    <p class="h5 qty">Quantity :</p>
+                    <button (click)="decrement(i)" class="btnSign">-</button>
+                    <input type="text" [value]="qtyArr[i]" class="count">
+                    <button (click)="increment(i)" class="btnSign">+</button>
+                    <button class="btn btn-primary mt-3" (click)="addToTable(list, qtyArr[i], list.productPrice * qtyArr[i])">Add to Bag</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h4 class="badge-secondary text-center">Product Bag</h4>
+    <table class="table table-bordered table-responsive-sm " >
+        <tr>
+            <th>Sr.No</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price Details</th>
+            <th>Order Total</th>
+        </tr>
+        <tr *ngFor="let items of tableProductsArr let i = index">
+            <td>{{i+1}}</td>
+            <td>{{items.productName}}</td>
+            <td>{{items.total}}</td>
+            <td>{{items.productPrice}}</td>
+            <td>{{items.Total}}</td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td>Total</td>
+            <td>{{totalAmt}}</td>
+        </tr>
+
+    </table>
+    <button class="btn btn-warning btn-block btn-sm" (click)="clearBag()">Confirm Order</button>
+</div>
